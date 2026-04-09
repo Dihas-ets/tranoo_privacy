@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suppression de compte - Tranoo Pro</title>
+  <meta name="description" content="Demande de suppression de compte professionnel et de données - Tranoo Pro">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #2c3e50;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      color: white;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1" fill="rgba(255,255,255,0.05)"/></svg>');
+      background-size: 100px 100px;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 1;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 40px 30px;
+    }
+
+    h2 {
+      color: #1e3c72;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #3498db;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h3 {
+      color: #34495e;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 25px 0 15px 0;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: #5a6c7d;
+      line-height: 1.8;
+    }
+
+    ul, ol {
+      margin: 15px 0 15px 25px;
+      color: #5a6c7d;
+    }
+
+    li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-left: 4px solid #3498db;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+      border-left: 4px solid #e53e3e;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+
+    .contact-card {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 10px;
+      padding: 25px;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .contact-card h3 {
+      color: #1e3c72;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .contact-info {
+      font-size: 1.2rem;
+      color: #1e3c72;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+
+    .email-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 20px 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
+    }
+
+    .email-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(30, 60, 114, 0.4);
+    }
+
+    .icon {
+      font-size: 1.2em;
+      margin-right: 8px;
+    }
+
+    .footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .footer p {
+      color: #bdc3c7;
+      margin: 0;
+    }
+
+    .steps-list {
+      counter-reset: step-counter;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .steps-list li {
+      counter-increment: step-counter;
+      margin-bottom: 20px;
+      position: relative;
+      padding-left: 50px;
+      min-height: 40px;
+    }
+
+    .steps-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: #3498db;
+      color: white;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .role-card {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 15px 0;
+    }
+
+    .role-card h4 {
+      color: #1e3c72;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 20px;
+        border-radius: 15px;
+      }
+      
+      .header {
+        padding: 30px 20px;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .content {
+        padding: 30px 20px;
+      }
+      
+      h2 {
+        font-size: 1.3rem;
+      }
+      
+      .contact-card {
+        padding: 20px;
+      }
+      
+      .email-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Suppression de compte professionnel</h1>
+    <p>Application Tranoo Pro - Plateforme professionnelle multi-rôles</p>
+  </div>
+
+  <div class="content">
+    <p>
+      <strong>Date de dernière mise à jour :</strong> Avril 2026
+    </p>
+
+    <div class="warning-box">
+      <h3>Important : Suppression irréversible</h3>
+      <p>
+        La suppression de votre compte professionnel entraînera la suppression permanente de toutes vos données, historique d'activités, documents professionnels et relations commerciales. Cette action ne peut pas être annulée et peut affecter vos activités en cours.
+      </p>
+    </div>
+
+    <h2><span class="icon">1.</span> Ce qui sera supprimé par rôle</h2>
+    
+    <div class="role-card">
+      <h4>Pour les vendeurs</h4>
+      <ul>
+        <li>Catalogue de produits et annonces</li>
+        <li>Historique des ventes et transactions</li>
+        <li>Informations commerciales et clients</li>
+        <li>Documents et certificats professionnels</li>
+      </ul>
+    </div>
+
+    <div class="role-card">
+      <h4>Pour les chauffeurs</h4>
+      <ul>
+        <li>Informations de conduite et permis</li>
+        <li>Historique des missions transportées</li>
+        <li>Disponibilités et préférences</li>
+        <li>Évaluations et performances</li>
+      </ul>
+    </div>
+
+    <div class="role-card">
+      <h4>Pour les livreurs</h4>
+      <ul>
+        <li>Données de localisation et trajets</li>
+        <li>Historique des livraisons</li>
+        <li>Performance et statistiques</li>
+        <li>Informations de véhicule</li>
+      </ul>
+    </div>
+
+    <div class="role-card">
+      <h4>Pour les agents commerciaux</h4>
+      <ul>
+        <li>Base de clients et prospects</li>
+        <li>Historique des ventes et commissions</li>
+        <li>Planning et objectifs commerciaux</li>
+        <li>Documents contractuels</li>
+      </ul>
+    </div>
+
+    <div class="role-card">
+      <h4>Pour les transitaires</h4>
+      <ul>
+        <li>Informations logistiques et entrepôts</li>
+        <li>Historique des expéditions</li>
+        <li>Documents douaniers et réglementaires</li>
+        <li>Capacités et certifications</li>
+      </ul>
+    </div>
+
+    <h2><span class="icon">2.</span> Ce qui sera conservé</h2>
+    
+    <div class="highlight-box">
+      Conformément à nos obligations légales et professionnelles, certaines données seront conservées :
+    </div>
+    
+    <ul>
+      <li>Données commerciales (7 ans pour raisons fiscales et légales)</li>
+      <li>Documents légaux, contractuels et réglementaires</li>
+      <li>Données financières et de paiement</li>
+      <li>Données anonymisées pour l'amélioration du service</li>
+      <li>Données de localisation (6 mois maximum pour les livreurs)</li>
+    </ul>
+
+    <h2><span class="icon">3.</span> Impact sur vos activités</h2>
+    
+    <div class="warning-box">
+      La suppression de votre compte professionnel peut avoir des conséquences importantes :
+    </div>
+    
+    <ul>
+      <li>Annulation automatique de toutes les missions et livraisons en cours</li>
+      <li>Perte d'accès à votre clientèle et historique commercial</li>
+      <li>Suppression de vos documents et certifications</li>
+      <li>Interruption immédiate de tous les services actifs</li>
+      <li>Perte des commissions et revenus en attente</li>
+    </ul>
+
+    <h2><span class="icon">4.</span> Comment demander la suppression</h2>
+    
+    <ol class="steps-list">
+      <li>
+        <strong>Finalisez vos activités en cours</strong>
+        <p>Assurez-vous que toutes vos missions, livraisons et transactions sont terminées.</p>
+      </li>
+      <li>
+        <strong>Sauvegardez vos documents importants</strong>
+        <p>Téléchargez tous vos documents, contrats et données commerciales importantes.</p>
+      </li>
+      <li>
+        <strong>Préparez vos informations</strong>
+        <p>Rassemblez votre identifiant professionnel, email lié au compte et justificatifs.</p>
+      </li>
+      <li>
+        <strong>Envoyez votre demande formelle</strong>
+        <p>Contactez-nous par email en indiquant clairement votre souhait de suppression professionnelle.</p>
+      </li>
+      <li>
+        <strong>Confirmation et vérification</strong>
+        <p>Nous procéderons à une vérification d'identité approfondie pour sécuriser le processus.</p>
+      </li>
+      <li>
+        <strong>Traitement de la demande</strong>
+        <p>Votre demande sera traitée dans les 30 jours suivant confirmation.</p>
+      </li>
+    </ol>
+
+    <h2><span class="icon">5.</span> Contact pour la suppression professionnelle</h2>
+    
+    <div class="contact-card">
+      <h3>Envoyez votre demande de suppression professionnelle</h3>
+      <p>Pour demander la suppression de votre compte professionnel et des données associées, veuillez nous envoyer un email à :</p>
+      
+      <div class="contact-info">
+        <strong>contact@dihas.tech</strong>
+      </div>
+      
+      <a href="mailto:contact@dihas.tech?subject=Demande%20de%20suppression%20de%20compte%20Tranoo%20Pro&body=Bonjour,%0A%0AJe%20souhaite%20demander%20la%20suppression%20de%20mon%20compte%20professionnel%20Tranoo%20Pro.%0A%0ARôle%20professionnel%20:%20%0AIdentifiant%20utilisateur%20ou%20email%20:%20%0ARaison%20de%20la%20suppression%20:%20%0A%0AMerci%20de%20traiter%20ma%20demande.%0A%0ACordialement" class="email-button">
+        <span class="icon">?</span>Envoyer un email de demande
+      </a>
+      
+      <p>
+        <strong>Informations à inclure :</strong><br>
+        - Votre rôle professionnel (vendeur, chauffeur, livreur, agent commercial, transitaire)<br>
+        - Identifiant utilisateur ou email professionnel<br>
+        - Raison de la suppression<br>
+        - Confirmation de finalisation des activités en cours
+      </p>
+    </div>
+
+    <h2><span class="icon">6.</span> Alternative : Suspendre votre compte</h2>
+    
+    <div class="highlight-box">
+      Si vous souhaitez suspendre temporairement vos activités plutôt que supprimer définitivement votre compte, nous pouvons désactiver votre profil professionnel.
+    </div>
+    
+    <p>
+      La suspension conserve vos données et historique professionnel tout rendant votre compte inaccessible. Vous pourrez le réactiver ultérieurement en nous contactant.
+    </p>
+
+    <h2><span class="icon">7.</span> Transfert de données professionnelles</h2>
+    
+    <p>
+      Avant la suppression finale, vous pouvez demander un export complet de vos données professionnelles :
+    </p>
+    
+    <ul>
+      <li>Historique complet des transactions commerciales</li>
+      <li>Liste des clients et contacts professionnels</li>
+      <li>Documents contractuels et certificats</li>
+      <li>Statistiques de performance et rapports</li>
+      <li>Données financières et commissions</li>
+    </ul>
+
+    <h2><span class="icon">8.</span> Support et accompagnement</h2>
+    
+    <p>
+      Pour toute question concernant la suppression de votre compte professionnel ou vos droits sur vos données, contactez notre support dédié :
+    </p>
+    
+    <ul>
+      <li><strong>Email confidentialité :</strong> tranoauto0@gmail.com</li>
+      <li><strong>Support professionnel :</strong> tranoo.store</li>
+      <li><strong>Téléphone :</strong> +229 0141839801</li>
+    </ul>
+
+    <p>
+      Notre équipe professionnelle est là pour vous accompagner dans ce processus et répondre à toutes vos questions concernant vos obligations et droits.
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2026 Tranoo Pro. Tous droits réservés.</p>
+    <p>Cette page s'applique à l'application mobile Tranoo Pro.</p>
+    <p>Plateforme professionnelle certifiée et conforme aux régulations en vigueur.</p>
+  </div>
+</div>
+
+</body>
+</html>
